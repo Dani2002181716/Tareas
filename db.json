@@ -1,0 +1,83 @@
+{
+    
+    "gestion_de_proyectos": [
+      {
+        "id_proyectos":1,
+        "nombre_proyecto":"Proyecto 1 ",
+        "descripcion_proyecto":"Desarrollo de una nueva aplicación móvil",
+        "fecha_inicio":"2024-01-10",
+        "fecha_fin":"2024-06-10"
+      },
+      {
+        "id_proyectos":2,
+        "nombre_proyecto":"Proyecto 2 ",
+        "descripcion_proyecto":"Rediseño del sitio web corporativo",
+        "fecha_inicio":"2024-03-01",
+        "fecha_fin":"2024-09-15"
+
+      },
+      {
+      "id_proyectos":3,
+        "nombre_proyecto":"Proyecto 3 ",
+        "descripcion_proyecto":"Implementación de un sistema de gestión de inventarios",
+        "fecha_inicio":"2024-04-20",
+        "fecha_fin":"2024-11-05"
+      }  
+    ],
+    "empleados":[
+        {
+            "id_empleado":1,
+            "nombre_empleado":"Juan Pérez",
+            "cargo_empleado":"Gerente de Proyectos",
+            "correo_empleado":"juan_perez@gmail.com"
+        },
+
+        {
+            "id_empleado":2,
+            "nombre_empleado":"Martha Sanchez",
+            "cargo_empleado":"Desarrolladora de Software",
+            "correo_empleado":"martha_sanchez@gmail.com"
+
+        },
+        {
+            "id_empleado":3,
+            "nombre_empleado":"Carlos Gómez",
+            "cargo_empleado":"Diseñador Web",
+            "correo_empleado":"carlos_gomez@gmail.com"
+        }
+    ],
+    "tareas":[
+        {
+            "id_tareas":1,
+            "nombre_tarea":"Tarea 1 ",
+            "descripcion_tarea":"Realizar una reunión con el equipo de desarrollo",
+            "id_proyectos":1,
+            "id_empleado":1,
+            "status": "Completo"
+        },
+        {
+            "id_tareas":2,
+            "nombre_tarea":"Tarea 2 ",
+            "descripcion_tarea":"Revision del código",
+            "id_proyectos":2,
+            "id_empleado":2,
+            "status": "Pendiente"
+        },
+        {
+            "id_tareas":3,
+            "nombre_tarea":"Tarea 3 ",
+            "descripcion_tarea":"Actualización del Sitio Web",
+            "id_proyectos":3,
+            "id_empleado":3,
+            "status": "En progreso"
+        }
+
+    ]
+    }
+
+
+
+
+
+
+

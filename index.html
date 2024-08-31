@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Data Display</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data from API</h1>
+    
+    <h2>Projects</h2>
+    <table id="projects">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>Employees</h2>
+    <table id="employees">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>Tasks</h2>
+    <table id="tasks">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Project</th>
+                <th>Employee</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch('/all_data');
+                const data = await response.json();
+                
+                // Check if data exists and is an object
+                if (data && typeof data === 'object') {
+                    // Populate projects table
+                    const projectsTable = document.getElementById('projects').getElementsByTagName('tbody')[0];
+                    if (Array.isArray(data.gestion_de_proyectos)) {
+                        data.gestion_de_proyectos.forEach(project => {
+                            const row = projectsTable.insertRow();
+                            row.insertCell(0).textContent = project.id_proyectos;
+                            row.insertCell(1).textContent = project.nombre_proyecto;
+                            row.insertCell(2).textContent = project.descripcion_proyecto;
+                            row.insertCell(3).textContent = project.fecha_inicio;
+                            row.insertCell(4).textContent = project.fecha_fin;
+                        });
+                    }
+
+                    // Populate employees table
+                    const employeesTable = document.getElementById('employees').getElementsByTagName('tbody')[0];
+                    if (Array.isArray(data.empleados)) {
+                        data.empleados.forEach(employee => {
+                            const row = employeesTable.insertRow();
+                            row.insertCell(0).textContent = employee.id_empleado;
+                            row.insertCell(1).textContent = employee.nombre_empleado;
+                            row.insertCell(2).textContent = employee.cargo_empleado;
+                            row.insertCell(3).textContent = employee.correo_empleado;
+                        });
+                    }
+
+                    // Populate tasks table
+                    const tasksTable = document.getElementById('tasks').getElementsByTagName('tbody')[0];
+                    if (Array.isArray(data.tareas)) {
+                        data.tareas.forEach(task => {
+                            const row = tasksTable.insertRow();
+                            row.insertCell(0).textContent = task.id_tareas;
+                            row.insertCell(1).textContent = task.nombre_tarea;
+                            row.insertCell(2).textContent = task.descripcion_tarea;
+                            row.insertCell(3).textContent = task.nombre_proyecto || 'N/A';
+                            row.insertCell(4).textContent = task.nombre_empleado || 'N/A';
+                            row.insertCell(5).textContent = task.status;
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Fetch data when the page loads
+        document.addEventListener('DOMContentLoaded', fetchData);
+    </script>
+</body>
+</html>
